@@ -1,0 +1,9 @@
+{
+    "displayName" : "Producto",
+    "name" : "producto",
+    "templateName" : "producto",
+    "url" : "producto.html",
+    "server": "localhost:8080",
+    "context": "/producto.master.service.subsystem/webresources/ProductoMaster",
+    "el" : "#main"
+}

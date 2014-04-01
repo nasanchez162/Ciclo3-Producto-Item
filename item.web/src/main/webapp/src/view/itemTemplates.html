@@ -1,0 +1,58 @@
+<script type="text/template" id="itemList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>cantidadItem</th>
+		 <th>fechaExpiracion</th>
+		 <th>name</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(items, function(item) { %>
+    <tr>
+		<td><%= htmlEncode(item.getDisplay('cantidadItem')) %></td>
+		<td><%= htmlEncode(item.getDisplay('fechaExpiracion')) %></td>
+		<td><%= htmlEncode(item.getDisplay('name')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-item-edit',{id:<%= item.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-item-delete',{id:<%= item.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="item">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-itemForm">
+    <% if(item.id) {%>
+    <input type="hidden" name="id" value="<%= item.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="cantidadItem">cantidadItem</label>
+    	<input type="text" class="form-control" id="cantidadItem" name="cantidadItem" placeholder="Enter value" value="<%= item.get('cantidadItem') %>"/>	
+		</div>
+		<div class="form-group" >
+			<label for="fechaExpiracion">fechaExpiracion</label>
+    		<input type="text" data-converter="date" data-date-format="dd/mm/yyyy" class="form-control" id="fechaExpiracion"  name="fechaExpiracion" placeholder="Enter value" />
+    		<%= '<scr'+'ipt>' %>
+        	$('#fechaExpiracion').datepicker({autoclose:true});
+        	$('#fechaExpiracion').datepicker('setDate',new Date(<%= item.get('fechaExpiracion') %>));
+    		<%= '</scr'+'ipt>' %>
+		</div>
+		<div class="form-group" >
+		<label for="name">name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= item.get('name') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

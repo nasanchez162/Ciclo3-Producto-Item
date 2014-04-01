@@ -1,0 +1,59 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>co.edu.uniandes.csw.spl</groupId>
+    <artifactId>producto.web</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <dependencies>
+        <!-- JUnit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+            <type>jar</type>
+            <scope>test</scope>
+            <optional>true</optional>
+        </dependency>
+        <!-- Arquillian -->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
+            <version>1.0.0.Final</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- arquillian support for embedded glassfish -->
+        <dependency>
+            <groupId>org.jboss.arquillian.container</groupId>
+            <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+            <version>1.0.0.CR3</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.resolver</groupId>
+            <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        
+		<dependency>
+            <groupId>co.edu.uniandes.csw.spl</groupId>
+            <artifactId>common.web</artifactId>
+            <version>1.1.2</version>
+            <type>war</type>
+        </dependency>
+ 
+    </dependencies> 
+    <name>producto.web</name>
+    <repositories>
+		<repository>
+			<id>fabricasUniandes</id>
+			<name>Fabricas uniandes</name>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>true</enabled></snapshots>
+			<url>http://spl.uniandes.edu.co:8081/nexus/content/repositories/releases/</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+</project>

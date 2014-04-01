@@ -1,0 +1,48 @@
+<script type="text/template" id="dependenciaList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>cantidadDepen</th>
+		 <th>name</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(dependencias, function(dependencia) { %>
+    <tr>
+		<td><%= htmlEncode(dependencia.getDisplay('cantidadDepen')) %></td>
+		<td><%= htmlEncode(dependencia.getDisplay('name')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-dependencia-edit',{id:<%= dependencia.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-dependencia-delete',{id:<%= dependencia.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="dependencia">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-dependenciaForm">
+    <% if(dependencia.id) {%>
+    <input type="hidden" name="id" value="<%= dependencia.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="cantidadDepen">cantidadDepen</label>
+    	<input type="text" class="form-control" id="cantidadDepen" name="cantidadDepen" placeholder="Enter value" value="<%= dependencia.get('cantidadDepen') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= dependencia.get('name') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 

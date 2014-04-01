@@ -1,0 +1,9 @@
+{
+    "displayName" : "Dependencia",
+    "name" : "dependencia",
+    "templateName" : "dependencia",
+    "url" : "user.html",
+    "server": "localhost:8080",
+    "context": "/dependencia.service.subsystem.web/webresources/Dependencia",
+    "el" : "#main"
+}

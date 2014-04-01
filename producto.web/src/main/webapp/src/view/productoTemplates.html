@@ -1,0 +1,54 @@
+<script type="text/template" id="productoList">
+    <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <table class="table striped">
+    <thead>
+    <tr>
+		 <th>tipo</th>
+		 <th>minimaCantidad</th>
+		 <th>name</th>
+    <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% _.each(productos, function(producto) { %>
+    <tr>
+		<td><%= htmlEncode(producto.getDisplay('tipo')) %></td>
+		<td><%= htmlEncode(producto.getDisplay('minimaCantidad')) %></td>
+		<td><%= htmlEncode(producto.getDisplay('name')) %></td>
+    <td>
+    <% if(showEdit) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-producto-edit',{id:<%= producto.id %>}); return false" >Edit</a> |
+	<% } %> 
+	<% if(showDelete) {%>
+    <a onclick="Backbone.trigger('<%= componentId %>-producto-delete',{id:<%= producto.id %>}); return false" >Delete</a> 
+	<% } %>    
+	</td>
+    </tr>
+    <% }); %>
+    </tbody>
+    </table>
+    </div>
+</script>
+
+<script type="text/template" id="producto">
+    <div class="form-group">
+    <form role="form" id="<%= componentId %>-productoForm">
+    <% if(producto.id) {%>
+    <input type="hidden" name="id" value="<%= producto.id %>"/>
+    <% }%>
+		<div class="form-group" >
+		<label for="tipo">tipo</label>
+    	<input type="text" class="form-control" id="tipo" name="tipo" placeholder="Enter value" value="<%= producto.get('tipo') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="minimaCantidad">minimaCantidad</label>
+    	<input type="text" class="form-control" id="minimaCantidad" name="minimaCantidad" placeholder="Enter value" value="<%= producto.get('minimaCantidad') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="name">name</label>
+    	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= producto.get('name') %>"/>	
+		</div>
+    </form>
+    </div>
+</script> 
