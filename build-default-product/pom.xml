@@ -16,5 +16,6 @@
     	  <module>../dependencia.web</module>
     	  <module>../dependencia.service.subsystem</module>
 		  <module>../dependencia.service.subsystem.web</module>
+        <module>../producto.master.service.subsystem</module>
     </modules>
 </project>
