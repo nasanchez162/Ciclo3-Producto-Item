@@ -17,6 +17,7 @@ public abstract class _ItemConverter {
 				dto.setCantidadItem(entity.getCantidadItem());
 				dto.setFechaExpiracion(entity.getFechaExpiracion());
 				dto.setName(entity.getName());
+				dto.setPrecio(entity.getPrecio());
 			return dto;
 		}else{
 			return null;
@@ -30,6 +31,7 @@ public abstract class _ItemConverter {
 			entity.setCantidadItem(dto.getCantidadItem());
 			entity.setFechaExpiracion(dto.getFechaExpiracion());
 			entity.setName(dto.getName());
+			entity.setPrecio(dto.getPrecio());
 			return entity;
 		}else {
 			return null;

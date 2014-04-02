@@ -7,6 +7,7 @@
 		 <th>tipo</th>
 		 <th>minimaCantidad</th>
 		 <th>name</th>
+		 <th>maximaCantidad</th>
     <th>Actions</th>
     </tr>
     </thead>
@@ -16,6 +17,7 @@
 		<td><%= htmlEncode(producto.getDisplay('tipo')) %></td>
 		<td><%= htmlEncode(producto.getDisplay('minimaCantidad')) %></td>
 		<td><%= htmlEncode(producto.getDisplay('name')) %></td>
+		<td><%= htmlEncode(producto.getDisplay('maximaCantidad')) %></td>
     <td>
     <% if(showEdit) {%>
     <a onclick="Backbone.trigger('<%= componentId %>-producto-edit',{id:<%= producto.id %>}); return false" >Edit</a> |
@@ -48,6 +50,10 @@
 		<div class="form-group" >
 		<label for="name">name</label>
     	<input type="text" class="form-control" id="name" name="name" placeholder="Enter value" value="<%= producto.get('name') %>"/>	
+		</div>
+		<div class="form-group" >
+		<label for="maximaCantidad">maximaCantidad</label>
+    	<input type="text" class="form-control" id="maximaCantidad" name="maximaCantidad" placeholder="Enter value" value="<%= producto.get('maximaCantidad') %>"/>	
 		</div>
     </form>
     </div>

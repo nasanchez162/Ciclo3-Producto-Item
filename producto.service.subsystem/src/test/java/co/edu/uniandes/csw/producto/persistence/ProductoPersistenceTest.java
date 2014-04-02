@@ -74,6 +74,7 @@ public class ProductoPersistenceTest {
 			entity.setTipo(generateRandom(String.class));
 			entity.setMinimaCantidad(generateRandom(Integer.class));
 			entity.setName(generateRandom(String.class));
+			entity.setMaximaCantidad(generateRandom(Integer.class));
 			em.persist(entity);
 			data.add(entity);
 		}
@@ -85,6 +86,7 @@ public class ProductoPersistenceTest {
 		dto.setTipo(generateRandom(String.class));
 		dto.setMinimaCantidad(generateRandom(Integer.class));
 		dto.setName(generateRandom(String.class));
+		dto.setMaximaCantidad(generateRandom(Integer.class));
 		
 		
 		ProductoDTO result=productoPersistence.createProducto(dto);
@@ -96,6 +98,7 @@ public class ProductoPersistenceTest {
 		Assert.assertEquals(dto.getTipo(), entity.getTipo());	
 		Assert.assertEquals(dto.getMinimaCantidad(), entity.getMinimaCantidad());	
 		Assert.assertEquals(dto.getName(), entity.getName());	
+		Assert.assertEquals(dto.getMaximaCantidad(), entity.getMaximaCantidad());	
 	}
 	
 	@Test
@@ -121,6 +124,7 @@ public class ProductoPersistenceTest {
 		Assert.assertEquals(entity.getTipo(), dto.getTipo());
 		Assert.assertEquals(entity.getMinimaCantidad(), dto.getMinimaCantidad());
 		Assert.assertEquals(entity.getName(), dto.getName());
+		Assert.assertEquals(entity.getMaximaCantidad(), dto.getMaximaCantidad());
         
 	}
 	
@@ -141,6 +145,7 @@ public class ProductoPersistenceTest {
 		dto.setTipo(generateRandom(String.class));
 		dto.setMinimaCantidad(generateRandom(Integer.class));
 		dto.setName(generateRandom(String.class));
+		dto.setMaximaCantidad(generateRandom(Integer.class));
 		
 		
 		productoPersistence.updateProducto(dto);
@@ -151,6 +156,7 @@ public class ProductoPersistenceTest {
 		Assert.assertEquals(dto.getTipo(), resp.getTipo());	
 		Assert.assertEquals(dto.getMinimaCantidad(), resp.getMinimaCantidad());	
 		Assert.assertEquals(dto.getName(), resp.getName());	
+		Assert.assertEquals(dto.getMaximaCantidad(), resp.getMaximaCantidad());	
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){

@@ -7,6 +7,8 @@ define([], function() {
 		 'fechaExpiracion' : ''
  ,  
 		 'name' : ''
+ ,  
+		 'precio' : ''
         },
         initialize: function() {
         },

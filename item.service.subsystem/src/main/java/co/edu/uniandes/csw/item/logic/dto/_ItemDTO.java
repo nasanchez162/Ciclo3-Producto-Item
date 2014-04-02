@@ -12,6 +12,7 @@ public abstract class _ItemDTO {
 	private Integer cantidadItem;
 	private Date fechaExpiracion;
 	private String name;
+	private Double precio;
 
 	public Long getId() {
 		return id;
@@ -40,6 +41,13 @@ public abstract class _ItemDTO {
  
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Double getPrecio() {
+		return precio;
+	}
+ 
+	public void setPrecio(Double precio) {
+		this.precio = precio;
 	}
 	
 }

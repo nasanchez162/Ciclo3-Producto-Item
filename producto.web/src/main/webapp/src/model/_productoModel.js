@@ -7,6 +7,8 @@ define([], function() {
 		 'minimaCantidad' : ''
  ,  
 		 'name' : ''
+ ,  
+		 'maximaCantidad' : ''
         },
         initialize: function() {
         },

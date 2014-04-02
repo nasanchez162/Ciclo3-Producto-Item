@@ -69,6 +69,7 @@ public class ProductoLogicServiceTest {
 			pdto.setTipo(generateRandom(String.class));
 			pdto.setMinimaCantidad(generateRandom(Integer.class));
 			pdto.setName(generateRandom(String.class));
+			pdto.setMaximaCantidad(generateRandom(Integer.class));
 			pdto=productoPersistence.createProducto(pdto);
 			data.add(pdto);
 		}
@@ -80,6 +81,7 @@ public class ProductoLogicServiceTest {
 		ldto.setTipo(generateRandom(String.class));
 		ldto.setMinimaCantidad(generateRandom(Integer.class));
 		ldto.setName(generateRandom(String.class));
+		ldto.setMaximaCantidad(generateRandom(Integer.class));
 		
 		
 		ProductoDTO result=productoLogicService.createProducto(ldto);
@@ -91,6 +93,7 @@ public class ProductoLogicServiceTest {
 		Assert.assertEquals(ldto.getTipo(), pdto.getTipo());	
 		Assert.assertEquals(ldto.getMinimaCantidad(), pdto.getMinimaCantidad());	
 		Assert.assertEquals(ldto.getName(), pdto.getName());	
+		Assert.assertEquals(ldto.getMaximaCantidad(), pdto.getMaximaCantidad());	
 	}
 	
 	@Test
@@ -116,6 +119,7 @@ public class ProductoLogicServiceTest {
 		Assert.assertEquals(pdto.getTipo(), ldto.getTipo());
 		Assert.assertEquals(pdto.getMinimaCantidad(), ldto.getMinimaCantidad());
 		Assert.assertEquals(pdto.getName(), ldto.getName());
+		Assert.assertEquals(pdto.getMaximaCantidad(), ldto.getMaximaCantidad());
         
 	}
 	
@@ -136,6 +140,7 @@ public class ProductoLogicServiceTest {
 		ldto.setTipo(generateRandom(String.class));
 		ldto.setMinimaCantidad(generateRandom(Integer.class));
 		ldto.setName(generateRandom(String.class));
+		ldto.setMaximaCantidad(generateRandom(Integer.class));
 		
 		
 		productoLogicService.updateProducto(ldto);
@@ -146,6 +151,7 @@ public class ProductoLogicServiceTest {
 		Assert.assertEquals(ldto.getTipo(), resp.getTipo());	
 		Assert.assertEquals(ldto.getMinimaCantidad(), resp.getMinimaCantidad());	
 		Assert.assertEquals(ldto.getName(), resp.getName());	
+		Assert.assertEquals(ldto.getMaximaCantidad(), resp.getMaximaCantidad());	
 	}
 	
 	public <T> T generateRandom(Class<T> objectClass){

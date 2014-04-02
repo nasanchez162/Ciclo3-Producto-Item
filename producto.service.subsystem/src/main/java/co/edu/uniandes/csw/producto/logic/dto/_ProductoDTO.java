@@ -12,6 +12,7 @@ public abstract class _ProductoDTO {
 	private String tipo;
 	private Integer minimaCantidad;
 	private String name;
+	private Integer maximaCantidad;
 
 	public Long getId() {
 		return id;
@@ -40,6 +41,13 @@ public abstract class _ProductoDTO {
  
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Integer getMaximaCantidad() {
+		return maximaCantidad;
+	}
+ 
+	public void setMaximaCantidad(Integer maximacantidad) {
+		this.maximaCantidad = maximacantidad;
 	}
 	
 }

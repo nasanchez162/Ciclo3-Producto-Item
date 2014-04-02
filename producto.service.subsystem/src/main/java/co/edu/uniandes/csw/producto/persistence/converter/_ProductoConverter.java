@@ -17,6 +17,7 @@ public abstract class _ProductoConverter {
 				dto.setTipo(entity.getTipo());
 				dto.setMinimaCantidad(entity.getMinimaCantidad());
 				dto.setName(entity.getName());
+				dto.setMaximaCantidad(entity.getMaximaCantidad());
 			return dto;
 		}else{
 			return null;
@@ -30,6 +31,7 @@ public abstract class _ProductoConverter {
 			entity.setTipo(dto.getTipo());
 			entity.setMinimaCantidad(dto.getMinimaCantidad());
 			entity.setName(dto.getName());
+			entity.setMaximaCantidad(dto.getMaximaCantidad());
 			return entity;
 		}else {
 			return null;
