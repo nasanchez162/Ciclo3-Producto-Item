@@ -1,7 +1,5 @@
 define(['controller/selectionController', 'model/cacheModel', 'model/productoMasterModel', 'component/_CRUDComponent', 'controller/tabController', 'component/productoComponent',
- 'component/itemComponent'
- ,
- 'component/dependenciaComponent'
+ 'component/itemComponent', 'component/dependenciaComponent', 'delegate/productoMasterDelegate' 
  
  ],function(SelectionController, CacheModel, ProductoMasterModel, CRUDComponent, TabController, ProductoComponent,
  ItemComponent
@@ -26,6 +24,9 @@ define(['controller/selectionController', 'model/cacheModel', 'model/productoMas
             });
             Backbone.on('producto-master-model-error', function(error) {
                 Backbone.trigger(uComponent.componentId + '-' + 'error', {event: 'producto-master-save', view: self, error: error});
+            });
+            Backbone.on(uComponent.componentId + '-instead-producto-list', function(params) {
+                self.list(params,uComponent);
             });
             Backbone.on(uComponent.componentId + '-instead-producto-save', function(params) {
                 self.model.set('productoEntity', params.model);
@@ -147,7 +148,52 @@ define(['controller/selectionController', 'model/cacheModel', 'model/productoMas
         },
         hideChilds: function() {
             $('#tabs').hide();
+        },
+        getAmmountProduct: function(id, callback, callbackError) {
+            console.log('getAmmountProduct: ' + id);
+            $.ajax({
+                url: '/producto.master.service.subsystem/webresources/ProductoMaster/'+id+'/getAmmountProduct',
+                type: 'GET',
+                data: {},
+                contentType: 'application/json'
+            }).done(_.bind(function(data) {
+                callback(data);
+            }, this)).error(_.bind(function(data) {
+                callbackError(data);
+            }, this));
+        },
+        list: function(params,uComponent) {
+
+            if (params) {
+                var data = params.data;
+            }
+            //oculta los hijos
+            this.hideChilds();
+            var self = uComponent.componentController;
+            if (!self.productoModelList) {
+                self.productoModelList = new self.listModelClass();
+            }
+            //consulta la lista de usuarios
+            
+            self.productoModelList.fetch({
+                data: data,
+                success: function() {
+                    
+                     _.each(self.productoModelList.models,function(element){
+                      App.Delegate.ProductoMasterDelegate.getAmmountProduct(element.id,function (data){
+                            element.set({cantidadDisponible: data});
+                        },function(){
+                            console.log("Error");
+                        });
+                    });
+                    self._renderList();
+                },
+                error: function(mode, error) {
+                    Backbone.trigger(self.componentId + '-' + 'error', {event: 'producto-list', view: self, error: error});
+                }
+            });
         }
+
     });
 
     return App.Component.ProductoMasterComponent;

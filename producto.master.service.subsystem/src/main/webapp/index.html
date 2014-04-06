@@ -20,6 +20,51 @@
         <script src="./js/vendor/backbone-min.js"></script>
         <script src="./js/vendor/bootstrap-datepicker.js"></script>
         <script data-main="src/main" src="./js/vendor/require.js"></script>
+        
+        <script type="text/template" id="productoList">
+            <div class="panel panel-default">
+            <!-- Default panel contents -->
+            <table class="table striped">
+            <thead>
+            <tr>
+                         <th>tipo</th>
+                         <th>minimaCantidad</th>
+                         <th>name</th>
+                         <th>maximaCantidad</th>
+                         <th>cantidadDisponible</th>
+            <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% _.each(productos, function(producto) { %>
+  
+                        <% if (producto.get('cantidadDisponible') < producto.getDisplay('minimaCantidad')) { %>
+                        <tr id="existenciasBajas" class="danger" data-toggle="tooltip" data-placement="right" title="Existencias bajas!">
+                        <% } if (producto.get('cantidadDisponible') > producto.getDisplay('maximaCantidad')){ %>
+                        <tr id="existenciasExcesivas" class="danger" data-toggle="tooltip" data-placement="right" title="Existencias excesivas!">
+                       
+                        <%} if (producto.get('cantidadDisponible') <= producto.getDisplay('maximaCantidad') && producto.get('cantidadDisponible') >= producto.getDisplay('minimaCantidad')){ %>
+                        <tr >
+                        <% } %>
+                        <td><%= htmlEncode(producto.getDisplay('tipo')) %></td>
+                        <td><%= htmlEncode(producto.getDisplay('minimaCantidad')) %></td>
+                        <td><%= htmlEncode(producto.getDisplay('name')) %></td>
+                        <td><%= htmlEncode(producto.getDisplay('maximaCantidad')) %></td>
+                        <td><%= producto.get('cantidadDisponible') %>  </td>
+            <td>
+            <% if(showEdit) {%>
+            <a onclick="Backbone.trigger('<%= componentId %>-producto-edit',{id:<%= producto.id %>}); return false" >Edit</a> |
+                <% } %> 
+                <% if(showDelete) {%>
+            <a onclick="Backbone.trigger('<%= componentId %>-producto-delete',{id:<%= producto.id %>}); return false" >Delete</a> 
+                <% } %>    
+                </td>
+            </tr>
+            <% }); %>
+            </tbody>
+            </table>
+            </div>
+        </script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="../../assets/js/html5shiv.js"></script>
