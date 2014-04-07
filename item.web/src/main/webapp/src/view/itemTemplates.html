@@ -13,7 +13,12 @@
     </thead>
     <tbody>
     <% _.each(items, function(item) { %>
+    <% var today = new Date();%>
+    <%if (item.get('fechaExpiracion')<today) { %>
+    <tr id="itemExpirado" class="danger" data-toggle="tooltip" data-placement="right" title="Se expiró el item!">
+    <%} else{%>
     <tr>
+    <%}%>
 		<td><%= htmlEncode(item.getDisplay('cantidadItem')) %></td>
 		<td><%= htmlEncode(item.getDisplay('fechaExpiracion')) %></td>
 		<td><%= htmlEncode(item.getDisplay('name')) %></td>
