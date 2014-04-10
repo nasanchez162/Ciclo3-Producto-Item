@@ -28,6 +28,15 @@ define(['controller/selectionController', 'model/cacheModel', 'model/productoMas
             Backbone.on(uComponent.componentId + '-instead-producto-list', function(params) {
                 self.list(params,uComponent);
             });
+           alert("funciona");
+            Backbone.on(uComponent.componentId + '-producto-borrar', function(params) {
+                //alert(params.id+" "+params.cantidad)
+                self.deleteItemProductsByNumber(params.id,params.cantidad,function(data){
+                    self.list(params,uComponent);
+                },function(data){
+                     console.log("Error");
+                })
+            });
             Backbone.on(uComponent.componentId + '-instead-producto-save', function(params) {
                 self.model.set('productoEntity', params.model);
                 if (params.model) {
@@ -153,6 +162,19 @@ define(['controller/selectionController', 'model/cacheModel', 'model/productoMas
             console.log('getAmmountProduct: ' + id);
             $.ajax({
                 url: '/producto.master.service.subsystem/webresources/ProductoMaster/'+id+'/getAmmountProduct',
+                type: 'GET',
+                data: {},
+                contentType: 'application/json'
+            }).done(_.bind(function(data) {
+                callback(data);
+            }, this)).error(_.bind(function(data) {
+                callbackError(data);
+            }, this));
+        },
+        deleteItemProductsByNumber: function(id, num, callback, callbackError) {
+            console.log('getAmmountProduct: ' + id);
+            $.ajax({
+                url: '/producto.master.service.subsystem/webresources/ProductoMaster/'+id+'/'+num+'/deleteItemProductsByNumber',
                 type: 'GET',
                 data: {},
                 contentType: 'application/json'

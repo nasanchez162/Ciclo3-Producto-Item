@@ -21,4 +21,11 @@ public class ProductoMasterService extends _ProductoMasterService {
     public String getAmmountProduct(@PathParam("id") Long id){
         return productoLogicService.getAmmountProduct(id);
     }
+    
+    @GET
+    @Path("{id}/{num}/deleteItemProductsByNumber")
+    public Boolean deleteItemProductsByNumber(@PathParam("id") Long id, @PathParam("num") Integer num){
+        return productoLogicService.deleteItemProductsByNumber(id,num);
+    }
+    
 }

@@ -31,6 +31,7 @@ define(['model/productoModel'], function(productoModel) {
             Backbone.on(this.componentId + '-' + 'producto-save', function(params) {
                 self.save(params);
             });
+            
             if(self.postInit){
             	self.postInit();
             }

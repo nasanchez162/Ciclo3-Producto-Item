@@ -19,6 +19,22 @@ define([], function() {
             }, this)).error(_.bind(function(data) {
                 callbackError(data);
             }, this));
+        },
+        deleteItemProductsByNumber: function(id, num , callback, callbackError) {
+            console.log('getAmmountProduct: ' + id + ' , '+num);
+            $.ajax({
+                url: '/producto.master.service.subsystem/webresources/ProductoMaster/'+id+'/'+num+'/deleteItemProductsByNumber',
+                type: 'GET',
+                data: {},
+                contentType: 'application/json'
+            }).done(_.bind(function(data) {
+                callback(data);
+            }, this)).error(_.bind(function(data) {
+                callbackError(data);
+            }, this));
         }
+        
     };
 });
+
+

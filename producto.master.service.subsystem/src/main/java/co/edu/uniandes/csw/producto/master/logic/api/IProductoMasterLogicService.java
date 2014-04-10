@@ -7,6 +7,6 @@ public interface IProductoMasterLogicService extends _IProductoMasterLogicServic
     public String getAmmountProduct(Long id);
 
     
-
+    public Boolean deleteItemProductsByNumber(Long id, Integer num);
         
 }

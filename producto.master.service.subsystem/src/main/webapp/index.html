@@ -20,7 +20,6 @@
         <script src="./js/vendor/backbone-min.js"></script>
         <script src="./js/vendor/bootstrap-datepicker.js"></script>
         <script data-main="src/main" src="./js/vendor/require.js"></script>
-        
         <script type="text/template" id="productoList">
             <div class="panel panel-default">
             <!-- Default panel contents -->
@@ -32,6 +31,7 @@
                          <th>name</th>
                          <th>maximaCantidad</th>
                          <th>cantidadDisponible</th>
+                         <th>borrarCantidad</th>
             <th>Actions</th>
             </tr>
             </thead>
@@ -51,6 +51,11 @@
                         <td><%= htmlEncode(producto.getDisplay('name')) %></td>
                         <td><%= htmlEncode(producto.getDisplay('maximaCantidad')) %></td>
                         <td><%= producto.get('cantidadDisponible') %>  </td>
+                        <%var valor = "Borrar-"+producto.getDisplay('id');%>
+            <td> <input type="text" class="form-control" id="<%=valor%>" name="<%=valor%>" placeholder="Cant. a borrar"/>	
+            <button onclick="myFunction(&quot;<%=valor%>&quot;,<%=producto.getDisplay('id')%>,<%= componentId %>)"><img height=24 width=24 src="http://pixabay.com/static/uploads/photo/2013/07/12/12/40/abort-146072_640.png?i"></button>
+     
+            </td>
             <td>
             <% if(showEdit) {%>
             <a onclick="Backbone.trigger('<%= componentId %>-producto-edit',{id:<%= producto.id %>}); return false" >Edit</a> |
@@ -64,7 +69,13 @@
             </tbody>
             </table>
             </div>
-        </script>
+        </script >
+       <script>
+       function myFunction(place,id,componentId)
+        {
+            Backbone.trigger(componentId+"-producto-borrar",{"id":id,"cantidad":document.getElementById(place).value});
+        }
+       </script>
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="../../assets/js/html5shiv.js"></script>
@@ -77,5 +88,6 @@
             <hr />
             <div id="tabs" ></div>
         </div>
+       
     </body>
 </html>
